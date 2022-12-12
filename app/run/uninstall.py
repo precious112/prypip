@@ -18,7 +18,7 @@ def uninstall(commands,python_path,packages_path):
     subprocess.run(final_command)
     
     uninstalled_package=uncut_uninstalled_package
-    print(uninstalled_package)
+    
     try:
         version_index=uninstalled_package.index('=')
         uninstalled_package=uninstalled_package[:version_index]
