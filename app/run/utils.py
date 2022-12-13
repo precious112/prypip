@@ -70,7 +70,7 @@ def generate_sub_dependencies(python_path,package):
     
     sub_dependencies_raw=subprocess.run([python_path,"-m","pip","show",package],universal_newlines = True,stdout = subprocess.PIPE)
     sub_dependencies_raw=sub_dependencies_raw.stdout.splitlines()
-    print(sub_dependencies_raw)
+    
     sub_dependencies=""
     for line in sub_dependencies_raw:
         if "Requires" in line or "requires" in line:
@@ -105,7 +105,7 @@ def remove_sub_dependencies(python_path,package):
     current_path=os.getcwd()
     dependency_tree=os.path.join(current_path,"dependency_tree.json")
     if not os.path.exists(dependency_tree):
-        cmd_colors.print_message("Error","can't remove sub depencies without the dependency being installed first")
+        cmd_colors.print_message("Error","dependency tree file does not exist,you propably didn't install this package with prypip")
         return False
 
     tree_dict={}
@@ -117,6 +117,7 @@ def remove_sub_dependencies(python_path,package):
         del tree_dict[package]
     except KeyError:
         cmd_colors.print_message("Error","package not present in dependency tree")
+        return
     
     tree_dict=json.dumps(tree_dict)
     with open(dependency_tree,"w") as file:

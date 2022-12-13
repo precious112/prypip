@@ -57,7 +57,7 @@ def upgrade(command,requirements_path):
         index=requirement_txt.index(del_line)
         requirement_txt[index]=newly_upgraded_package+'\n'
     except ValueError:
-        cmd_colors.print_message("Error","Can not find previous version in requirements.txt")
+        cmd_colors.print_message("Warning","Can not find previous version in requirements.txt")
     
     
 
