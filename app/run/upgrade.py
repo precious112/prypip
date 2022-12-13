@@ -1,5 +1,7 @@
 import subprocess
 import os
+from .utils import generate_sub_dependencies
+import cmd_colors
 
 def upgrade(command,requirements_path):
     len_command=len(command)-1
@@ -45,7 +47,7 @@ def upgrade(command,requirements_path):
             index=get_line.index('=')
             get_line=get_line[:index]
         except ValueError:
-            print('unexpected error')
+            cmd_colors.print_message("Error","Unexpected Error,please ensure every package in requirements.txt has a specific version")
             return
         if first_part==get_line:
             del_line=line
@@ -55,7 +57,7 @@ def upgrade(command,requirements_path):
         index=requirement_txt.index(del_line)
         requirement_txt[index]=newly_upgraded_package+'\n'
     except ValueError:
-        print('Error: can not find previous version in requirements.txt')
+        cmd_colors.print_message("Error","Can not find previous version in requirements.txt")
     
     
 
@@ -63,6 +65,7 @@ def upgrade(command,requirements_path):
         for line in requirement_txt:
             file.write(line)
 
+    generate_sub_dependencies(command[0],first_part)
     
     
 

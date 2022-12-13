@@ -2,8 +2,8 @@
 
 import sys
 import os
-from pathlib import Path
 import run
+import openl
 
 '''
 the main entry point of the prypip project,here's where
@@ -52,6 +52,9 @@ def main():
         if command_list[0]=="run":
             passed_commands=command_list[1:] 
             run.main.run(passed_commands,python_path,packages_path)
+
+        if command_list[0]=="open":
+            openl.main.openl(command_list[1])
     else:
         print("prypip can't find your venv_py_path.txt,add the file to use prypip.")
 

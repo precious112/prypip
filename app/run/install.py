@@ -1,11 +1,14 @@
 import subprocess
 import os
-from .utils import text_exists,check_for_upgrade
+from .utils import text_exists,check_for_upgrade,generate_sub_dependencies
 from .upgrade import upgrade
 import cmd_colors
 
 
+
+
 def install(commands,python_path,packages_path):
+    #os.system("cls")
     requirements_path=os.path.join(os.getcwd(),"requirements.txt")
     final_command=[python_path]+commands
     final_command.insert(1,'-m')
@@ -32,7 +35,7 @@ def install(commands,python_path,packages_path):
 
 
     if check==True:
-        print('Error: package exists in requirements.txt,please make sure your site-packages match your requirements.txt')
+        cmd_colors.print_message("Error","package exists in requirements.txt,please make sure your site-packages match your requirements.txt")
         return
 
     subprocess.run(final_command)
@@ -50,4 +53,6 @@ def install(commands,python_path,packages_path):
         with open(requirements_path,"a") as requirements:
             
             requirements.write(uncut_installed_package+'\n')
+
+    generate_sub_dependencies(final_command[0],installed_package)
 
