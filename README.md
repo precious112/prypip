@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7323271d759d25e5bb206bd3131560bd31db5009
 # Prypip
 
 Python package for auto updating requirements.txt and managing dependencies installed with pip.
@@ -124,5 +127,6 @@ path.
 
 ``` open ``` : used for opening and displaying special documents in prypip, e.g ``` prypip open dependency_tree.json ```
 displays tthe content of dependency_tree.json in a tree like structure.
+
 
 
