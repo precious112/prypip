@@ -10,19 +10,7 @@ the main entry point of the prypip project,here's where
 the prypip command line tool keyword emanates.
 '''
 
-# tester : C:\Users\user\prypip\app\prypip.py
 
-'''
-os.getcwd() : for getting running directory
-
-subprocess.poopen() : for opening a new sub shell process
-
-subprocess.Popen([sys.executable,"python_script_file_path"])
-
-subprocess.run([<command>], capture_output=True)
-
-os.environ['VIRTUAL_ENV']
-'''
 def main():
     #get the list of the specified command using sys.argv
     command_list=sys.argv

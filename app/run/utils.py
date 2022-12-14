@@ -4,7 +4,16 @@ from pathlib import Path
 import json
 import cmd_colors
 
+'''
+utils.py module contains utility and helper functions used
+within the run package.
+'''
+
 def text_exists(file_path,text):
+    '''
+    text_exists checks if a text exists in a text file.
+    '''
+
     lines=[]
     with open(file_path,"r") as file:
         lines=file.readlines()
@@ -15,6 +24,12 @@ def text_exists(file_path,text):
         return False
 
 def check_for_upgrade(file_path,text):
+
+    '''
+    check_for_upgrade() checks if a specific version of a package
+    requested to be installed already has a pre existing version.
+    '''
+
     lines=[]
     with open(file_path,"r") as file:
         lines=file.readlines()
@@ -60,6 +75,10 @@ def check_for_upgrade(file_path,text):
     return f'pass'
 
 def generate_sub_dependencies(python_path,package):
+
+    '''
+    generate_sub_dependencies adds installed packages to dependency_tree.json
+    '''
     current_path=os.getcwd()
     dependency_tree=os.path.join(current_path,"dependency_tree.json")
     if os.path.exists(dependency_tree):
@@ -102,6 +121,9 @@ def generate_sub_dependencies(python_path,package):
 
         
 def remove_sub_dependencies(python_path,package):
+    '''
+    remove_sub_dependencies removes uninstalled packages from to dependency_tree.json
+    '''
     current_path=os.getcwd()
     dependency_tree=os.path.join(current_path,"dependency_tree.json")
     if not os.path.exists(dependency_tree):
