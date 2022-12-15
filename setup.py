@@ -5,7 +5,7 @@ with open("README.md", encoding="utf8") as f:
     long_description=f.read()
 
 setup(name='prypip',
-      version='1.0.7',
+      version='1.0.8',
       description='pip for wrapper for properly auto updating requirements.txt and sorting out dependencies',
       author='Balogun Precious',
       author_email='preciouskent8@gmail.com',

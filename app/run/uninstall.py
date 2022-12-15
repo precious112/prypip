@@ -1,7 +1,8 @@
 import subprocess
 import os
-from .utils import text_exists,remove_sub_dependencies
+from .utils import text_exists,remove_sub_dependencies,add_version
 from ..cmd_colors import print_message
+
 
 def uninstall(commands,python_path,packages_path):
     requirements_path=os.path.join(os.getcwd(),"requirements.txt")
@@ -10,6 +11,9 @@ def uninstall(commands,python_path,packages_path):
 
     len_final_command=len(final_command)-1
     uncut_uninstalled_package=final_command[len_final_command]
+    if "==" not in uncut_uninstalled_package:
+        uncut_uninstalled_package=add_version(final_command[0],uncut_uninstalled_package)
+
     check=text_exists(requirements_path,uncut_uninstalled_package)
 
     if check==False:

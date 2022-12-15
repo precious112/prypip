@@ -4,6 +4,7 @@ from pathlib import Path
 import json
 from ..cmd_colors import print_message
 
+
 '''
 utils.py module contains utility and helper functions used
 within the run package.
@@ -144,3 +145,20 @@ def remove_sub_dependencies(python_path,package):
     tree_dict=json.dumps(tree_dict)
     with open(dependency_tree,"w") as file:
         file.write(tree_dict)
+
+
+def add_version(python_path,package):
+    get_version=subprocess.run([python_path,"-m","pip","show",package],universal_newlines = True,stdout = subprocess.PIPE)
+    get_version=get_version.stdout.splitlines()
+    needed_line=""
+    for line in get_version:
+        if 'Version:' in line or 'version:' in line:
+            needed_line=line
+            needed_line=needed_line.replace('Version:','')
+            needed_line=needed_line.replace('version:','')
+            needed_line=needed_line.strip()
+        else:
+            pass
+    full_package=package+"=="+needed_line
+    full_package=full_package.strip()
+    return full_package

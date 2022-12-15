@@ -3,6 +3,7 @@ import os
 from .utils import generate_sub_dependencies
 from ..cmd_colors import print_message
 
+
 def upgrade(command,requirements_path):
     len_command=len(command)-1
     upgraded_package=""
