@@ -1,7 +1,7 @@
 import subprocess
 import os
 from .utils import text_exists,remove_sub_dependencies
-import cmd_colors
+from ..cmd_colors import print_message
 
 def uninstall(commands,python_path,packages_path):
     requirements_path=os.path.join(os.getcwd(),"requirements.txt")
@@ -13,7 +13,7 @@ def uninstall(commands,python_path,packages_path):
     check=text_exists(requirements_path,uncut_uninstalled_package)
 
     if check==False:
-        cmd_colors.print_message("Error","package does not exists in requirements.txt,please make sure your site-packages match your requirements.txt")
+        print_message("Error","package does not exists in requirements.txt,please make sure your site-packages match your requirements.txt")
         return
 
     subprocess.run(final_command)
@@ -40,7 +40,7 @@ def uninstall(commands,python_path,packages_path):
             package_index=reqs.index(uncut_uninstalled_package+'\n')
             del reqs[package_index]
         except ValueError:
-            cmd_colors.print_message("Error","can't find package in requirements.txt to remove it.")
+            print_message("Error","can't find package in requirements.txt to remove it.")
             return
         
         with open(requirements_path,"w") as requirements:

@@ -10,7 +10,7 @@ printing console messages.
 
 def print_message(type,message):
     if type=="Error":
-        print(f'{Fore.Red}Error:{message}')
+        print(f'{Fore.RED}Error:{message}')
     if type=="Warning":
         print(f'{Fore.YELLOW}Warning:{message}')
     if type=="Norm":

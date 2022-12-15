@@ -2,7 +2,7 @@ import subprocess
 import os
 from .utils import text_exists,check_for_upgrade,generate_sub_dependencies
 from .upgrade import upgrade
-import cmd_colors
+from ..cmd_colors import print_message
 
 
 
@@ -35,7 +35,7 @@ def install(commands,python_path,packages_path):
 
 
     if check==True:
-        cmd_colors.print_message("Error","package exists in requirements.txt,please make sure your site-packages match your requirements.txt")
+        print_message("Error","package exists in requirements.txt,please make sure your site-packages match your requirements.txt")
         return
 
     subprocess.run(final_command)

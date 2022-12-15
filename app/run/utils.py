@@ -2,7 +2,7 @@ import os
 import subprocess
 from pathlib import Path
 import json
-import cmd_colors
+from ..cmd_colors import print_message
 
 '''
 utils.py module contains utility and helper functions used
@@ -61,12 +61,12 @@ def check_for_upgrade(file_path,text):
 
         if first_part_line==first_part_text:
             if last_part_text=="":
-                cmd_colors.print_message("Warning",f'You are trying to install {first_part_text} which is already in your list of depencies as {line}')
-                cmd_colors.print_message("Warning",f'please specify the version incase you are trying to upgrade or downgrade this current package')
+                print_message("Warning",f'You are trying to install {first_part_text} which is already in your list of dependencies as {line}')
+                print_message("Warning",f'please specify the version incase you are trying to upgrade or downgrade this current package')
                 return False
             if last_part_line==last_part_text:
                 
-                cmd_colors.print_message("Norm","Package already exists in requirements.txt")
+                print_message("Norm","Package already exists in requirements.txt")
                 return False
             else:
                 return True
@@ -127,7 +127,7 @@ def remove_sub_dependencies(python_path,package):
     current_path=os.getcwd()
     dependency_tree=os.path.join(current_path,"dependency_tree.json")
     if not os.path.exists(dependency_tree):
-        cmd_colors.print_message("Error","dependency tree file does not exist,you propably didn't install this package with prypip")
+        print_message("Error","dependency tree file does not exist,you propably didn't install this package with prypip")
         return False
 
     tree_dict={}
@@ -138,7 +138,7 @@ def remove_sub_dependencies(python_path,package):
     try:
         del tree_dict[package]
     except KeyError:
-        cmd_colors.print_message("Error","package not present in dependency tree")
+        print_message("Error","package not present in dependency tree")
         return
     
     tree_dict=json.dumps(tree_dict)

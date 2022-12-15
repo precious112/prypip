@@ -1,12 +1,11 @@
 from setuptools import setup
 import setuptools
-from pathlib import Path
 
-this_directory = Path(__file__).parent
-long_description = (this_directory / "README.md").read_text()
+with open("README.md", encoding="utf8") as f:
+    long_description=f.read()
 
 setup(name='prypip',
-      version='1.0.0',
+      version='1.0.7',
       description='pip for wrapper for properly auto updating requirements.txt and sorting out dependencies',
       author='Balogun Precious',
       author_email='preciouskent8@gmail.com',
@@ -15,13 +14,13 @@ setup(name='prypip',
       long_description_content_type="text/markdown",
       packages=setuptools.find_packages(),
       keywords=['pip','requirements','requirements.txt','dependency management'],
-      python_requires='=>3.8',
+      python_requires='>=3.8',
       install_requires=[
         'colorama'
       ],
       entry_points={
         "console_scripts": [
-            "prypip = app.prypip:main"
+            'prypip=app.prypip:main'
         ]
       }
      )
